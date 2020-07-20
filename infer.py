@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 
 
 from models import get_model
-from loaders import get_loader
+# from loaders import get_loader
 from utils import convert_state_dict
 
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
