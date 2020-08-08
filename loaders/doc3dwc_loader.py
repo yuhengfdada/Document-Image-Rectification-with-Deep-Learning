@@ -16,6 +16,7 @@ from torch.utils import data
 
 from augmentationsk import data_aug, tight_crop
 
+
 class doc3dwcLoader(data.Dataset):
     """
     Loader for world coordinate regression and RGB images

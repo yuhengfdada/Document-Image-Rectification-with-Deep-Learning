@@ -3,14 +3,13 @@
 
 import sys, os
 import torch
-import visdom
 import argparse
 import numpy as np
 import torch.nn as nn
 import torch.nn.init as init
 import torch.nn.functional as F
 import torchvision.models as models
-from tensorboardX import SummaryWriter
+from torch.utils.tensorboard import SummaryWriter
 
 import matplotlib
 matplotlib.use('Agg')
