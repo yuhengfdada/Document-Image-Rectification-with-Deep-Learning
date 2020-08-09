@@ -26,7 +26,7 @@ class doc3dbmnoimgcLoader(data.Dataset):
                  img_size=512):
         self.root = os.path.expanduser(root)
         # self.altroot='/home/sagnik/DewarpNet/swat3d/'
-        self.altroot='/media/hilab/HiLabData/Sagnik/FoldedDocumentDataset/data/DewarpNet/swat3d/'
+        self.altroot='./data/DewarpNet/swat3d/'
         self.split = split
         self.is_transform = is_transform
         self.n_classes = 2
@@ -45,7 +45,8 @@ class doc3dbmnoimgcLoader(data.Dataset):
 
     def __getitem__(self, index):
         im_name = self.files[self.split][index]                 #1/2Xec_Page_453X56X0001.png
-        im_path = pjoin(self.altroot, 'img',  im_name + '.png')  
+        im_path = pjoin(self.altroot, 'img',  im_name + '.png') 
+        print(im_name) 
         img_foldr,fname=im_name.split('/')
         recon_foldr='chess48'
         wc_path = pjoin(self.altroot, 'wc' , im_name + '.exr')

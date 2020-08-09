@@ -1,6 +1,16 @@
+*.zip
+*.mat
+runs/
+*.png
+*.jpg
+*.exr
 *.pkl
 *.swp
-
+rename.py
+*.crdownload
+toBeDownloaded.txt
+test.py
+io.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -102,3 +112,4 @@ ENV/
 
 # mypy
 .mypy_cache/
+checkpoints-bm/

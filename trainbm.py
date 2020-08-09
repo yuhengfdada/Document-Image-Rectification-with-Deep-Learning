@@ -3,13 +3,12 @@
 
 import sys, os
 import torch
-import visdom
 import argparse
 import numpy as np
 import torch.nn as nn
 import torch.nn.functional as F
 import torchvision.models as models
-from tensorboardX import SummaryWriter
+from torch.utils.tensorboard import SummaryWriter
 
 import matplotlib
 matplotlib.use('Agg')
@@ -230,4 +229,4 @@ if __name__ == '__main__':
 
 
 
-#CUDA_VISIBLE_DEVICES=1 python trainS3dbmnoimg.py --arch dnetccnl --dataset swat3d --img_rows 128 --img_cols 128 --img_norm --n_epoch 250 --batch_size 50 --l_rate 0.0001 --tboard --data_path /media/hilab/sagniksSSD/Sagnik/DewarpNet
+#CUDA_VISIBLE_DEVICES=1 python trainbm.py --arch dnetccnl --img_rows 128 --img_cols 128 --n_epoch 250 --batch_size 50 --l_rate 0.0001 --tboard --data_path ./DewarpNet/doc3d
