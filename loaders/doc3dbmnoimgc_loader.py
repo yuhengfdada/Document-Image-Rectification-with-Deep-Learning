@@ -49,7 +49,7 @@ class doc3dbmnoimgcLoader(Dataset):
         wc_path = pjoin(self.altroot, 'wc' , im_name + '.exr')
         bm_path = pjoin(self.altroot, 'bm' , im_name + '.mat')
         alb_path = pjoin(self.root,'recon',img_foldr,recon_foldr, fname[:-4]+recon_foldr+'0001.png')
-
+        
         wc = cv2.imread(wc_path, cv2.IMREAD_ANYCOLOR | cv2.IMREAD_ANYDEPTH)
         bm = h5.loadmat(bm_path)['bm']
         alb = m.imread(alb_path,mode='RGB')

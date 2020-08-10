@@ -190,7 +190,7 @@ def show_uloss_visdom(vis,uwpred,uworg,labels_win,out_win,labelopts,outopts,args
                win=labels_win,
                opts=labelopts)
 
-def show_unwarp_tnsboard(global_step,writer,uwpred,uworg,grid_samples,gt_tag,pred_tag):
+def show_unwarp_tnsboard(images, global_step,writer,uwpred,uworg,grid_samples,gt_tag,pred_tag):
     idxs=torch.LongTensor(random.sample(range(images.shape[0]), min(grid_samples,images.shape[0])))
     grid_uworg = torchvision.utils.make_grid(uworg[idxs],normalize=True, scale_each=True)
     writer.add_image(gt_tag, grid_uworg, global_step)

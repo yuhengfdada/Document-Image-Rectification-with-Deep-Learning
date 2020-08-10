@@ -129,7 +129,7 @@ def train(args):
                 avg_loss=0.0
 
             if args.tboard and  (i+1) % 20 == 0:
-                show_unwarp_tnsboard(global_step, writer,uwpred,uworg,8,'Train GT unwarp', 'Train Pred Unwarp')
+                show_unwarp_tnsboard(images, global_step, writer,uwpred,uworg,8,'Train GT unwarp', 'Train Pred Unwarp')
                 writer.add_scalar('BM: L1 Loss/train', avgl1loss/(i+1), global_step)
                 writer.add_scalar('CB: Recon Loss/train', avgrloss/(i+1), global_step)
                 writer.add_scalar('CB: SSIM Loss/train', avgssimloss/(i+1), global_step)
@@ -167,7 +167,7 @@ def train(args):
                 val_ssimloss+=float(ssim.cpu())
                 val_mse+=float(MSE(pred, gt))
             if args.tboard:
-                show_unwarp_tnsboard(epoch+1, writer,uwpred,uworg,8,'Val GT unwarp', 'Val Pred Unwarp')
+                show_unwarp_tnsboard(images_val, epoch+1, writer,uwpred,uworg,8,'Val GT unwarp', 'Val Pred Unwarp')
 
         val_l1loss=val_l1loss/len(valloader)
         val_mse=val_mse/len(valloader)
