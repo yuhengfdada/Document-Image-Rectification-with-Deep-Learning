@@ -4,21 +4,19 @@
 import os
 from os.path import join as pjoin
 import collections
-import json
 import torch
 import numpy as np
 import scipy.misc as m
 import scipy.io as io
 import matplotlib.pyplot as plt
-import glob
 import cv2
 import hdf5storage as h5
 import random
 
 from tqdm import tqdm
-from torch.utils import data
+from torch.utils.data import Dataset
 
-class doc3dbmnoimgcLoader(data.Dataset):
+class doc3dbmnoimgcLoader(Dataset):
     """
     Data loader for the  semantic segmentation dataset.
     """
@@ -46,7 +44,6 @@ class doc3dbmnoimgcLoader(data.Dataset):
     def __getitem__(self, index):
         im_name = self.files[self.split][index]                 #1/2Xec_Page_453X56X0001.png
         im_path = pjoin(self.altroot, 'img',  im_name + '.png') 
-        print(im_name) 
         img_foldr,fname=im_name.split('/')
         recon_foldr='chess48'
         wc_path = pjoin(self.altroot, 'wc' , im_name + '.exr')
