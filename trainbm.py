@@ -229,4 +229,4 @@ if __name__ == '__main__':
 
 
 
-#CUDA_VISIBLE_DEVICES=1 python trainbm.py --arch dnetccnl --img_rows 128 --img_cols 128 --n_epoch 250 --batch_size 50 --l_rate 0.0001 --tboard --data_path ./DewarpNet/doc3d
+#CUDA_VISIBLE_DEVICES=1 python trainbm.py --arch dnetccnl --img_rows 128 --img_cols 128 --n_epoch 250 --batch_size 2 --l_rate 0.0001 --tboard --data_path ./data/DewarpNet/doc3d

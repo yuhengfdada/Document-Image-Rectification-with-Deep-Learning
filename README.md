@@ -1,3 +1,6 @@
+### Mini Dataset
+Put it in DewarpNet/ and unzip. [**MiniDataset**](https://hkustconnect-my.sharepoint.com/:u:/g/personal/xluap_connect_ust_hk/ET7BUpyfSRdGvQ2k8BZmS9ABLRPNZz9ByLHFLoxREXI2Wg?e=d2xXyw)
+
 <p align="center">
   <img src="dwnet.png">
 </p>
