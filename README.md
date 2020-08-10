@@ -20,7 +20,7 @@ This repository contains the codes for [**DewarpNet**](https://www3.cs.stonybroo
 - Train Shape Network:
 `python trainwc.py --arch unetnc --data_path ./data/DewarpNet/doc3d/ --batch_size 50 --tboard`
 - Train Texture Mapping Network:
-`python trainbm.py --arch dnetccnl --img_rows 128 --img_cols 128 --img_norm --n_epoch 250 --batch_size 50 --l_rate 0.0001 --tboard --data_path ./DewarpNet/doc3d`
+`python trainbm.py --arch dnetccnl --img_rows 128 --img_cols 128 --img_norm --n_epoch 250 --batch_size 2 --l_rate 0.0001 --tboard --data_path ./data/DewarpNet/doc3d`
 
 ### Inference:
 - Run:
