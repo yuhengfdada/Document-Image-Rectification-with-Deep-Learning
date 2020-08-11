@@ -10,7 +10,7 @@ import cv2
 
 def sobel(window_size):
 	assert(window_size%2!=0)
-	ind=window_size/2
+	ind=window_size//2
 	matx=[]
 	maty=[]
 	for j in range(-ind,ind+1):
