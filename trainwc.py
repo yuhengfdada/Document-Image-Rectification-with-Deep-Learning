@@ -36,7 +36,7 @@ def train(args):
     # Setup Dataloader
     data_loader = get_loader('doc3dwc')
     data_path = args.data_path
-    t_loader = data_loader(data_path, is_transform=True, img_size=(args.img_rows, args.img_cols), augmentations=True)
+    t_loader = data_loader(data_path, is_transform=True, img_size=(args.img_rows, args.img_cols), augmentations=args.augmentation)
     v_loader = data_loader(data_path, is_transform=True, split='val', img_size=(args.img_rows, args.img_cols))
 
     n_classes = t_loader.n_classes
@@ -216,10 +216,12 @@ if __name__ == '__main__':
                         help='Path to store the loss logs')
     parser.add_argument('--tboard', dest='tboard', action='store_true', 
                         help='Enable visualization(s) on tensorboard | False by default')
+    parser.add_argument('--augmentation', nargs='?', type=bool, default=False,    
+                        help='whether to augment training data')
     parser.set_defaults(tboard=False)
 
     args = parser.parse_args()
     train(args)
 
 
-# CUDA_VISIBLE_DEVICES=1 python trainwc.py --arch unetnc --data_path ./data/DewarpNet/doc3d/ --batch_size 50 --tboard
+# CUDA_VISIBLE_DEVICES=1 python trainwc.py --arch unetnc --data_path ./data/DewarpNet/doc3d/ --batch_size 50 --tboard --augmentation False
