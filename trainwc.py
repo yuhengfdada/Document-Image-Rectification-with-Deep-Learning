@@ -165,7 +165,7 @@ def train(args):
                 val_gloss+=float(g_loss)
 
         if args.tboard:
-            show_wc_tnsboard(epoch+1, writer,images_val,labels_val,pred, 8,'Val Inputs', 'Val WCs', 'Val Pred. WCs')
+            show_wc_tnsboard(epoch+1, writer,images_val,labels_val,pred_val, 8,'Val Inputs', 'Val WCs', 'Val Pred. WCs')
             writer.add_scalar('WC: L1 Loss/val', val_loss, epoch+1)
             writer.add_scalar('WC: Grad Loss/val', val_gloss, epoch+1)
 
@@ -224,4 +224,4 @@ if __name__ == '__main__':
     train(args)
 
 
-# CUDA_VISIBLE_DEVICES=1 python trainwc.py --arch unetnc --data_path ./data/DewarpNet/doc3d/ --batch_size 50 --tboard --augmentation False
+# CUDA_VISIBLE_DEVICES=1 python trainwc.py --arch unetnc --data_path ./data/DewarpNet/doc3d/ --batch_size 50 --tboard
