@@ -1,23 +1,17 @@
 # code to train world coord regression from RGB Image
 # models are saved in checkpoints-wc/
 
-import sys, os
+import os
 import torch
 import argparse
-import numpy as np
 import torch.nn as nn
-import torch.nn.init as init
-import torch.nn.functional as F
-import torchvision.models as models
 from torch.utils.tensorboard import SummaryWriter
 
 import matplotlib
 matplotlib.use('Agg')
-import matplotlib.pyplot as plt
 
 from torch.autograd import Variable
 from torch.utils import data
-from torchvision import utils
 from tqdm import tqdm
 
 from models import get_model
@@ -95,14 +89,15 @@ def train(args):
 
     best_val_mse = 99999.0
     global_step=0
-
+    LClambda = 0.2
     for epoch in range(epoch_start,args.n_epoch):
         avg_loss=0.0
         avg_l1loss=0.0
         avg_gloss=0.0
         train_mse=0.0
         model.train()
-
+        if epoch == 50 and LClambda < 1.0:
+            LClambda += 0.2
         for i, (images, labels) in enumerate(trainloader):
             images = Variable(images.cuda())
             labels = Variable(labels.cuda())
@@ -112,7 +107,7 @@ def train(args):
             pred=htan(outputs)
             g_loss=gloss(pred, labels)
             l1loss = loss_fn(pred, labels)
-            loss=l1loss#+(0.2*g_loss)
+            loss=l1loss + LClambda*g_loss
             avg_l1loss+=float(l1loss)
             avg_gloss+=float(g_loss)
             avg_loss+=float(loss)
@@ -145,10 +140,7 @@ def train(args):
         model.eval()
         val_loss=0.0
         val_mse=0.0
-        val_bg=0.0
-        val_fg=0.0
         val_gloss=0.0
-        val_dloss=0.0
         for i_val, (images_val, labels_val) in tqdm(enumerate(valloader)):
             with torch.no_grad():
                 images_val = Variable(images_val.cuda())
@@ -208,7 +200,7 @@ if __name__ == '__main__':
                         help='# of the epochs')
     parser.add_argument('--batch_size', nargs='?', type=int, default=1, 
                         help='Batch Size')
-    parser.add_argument('--l_rate', nargs='?', type=float, default=1e-5, 
+    parser.add_argument('--l_rate', nargs='?', type=float, default=1e-4, 
                         help='Learning Rate')
     parser.add_argument('--resume', nargs='?', type=str, default=None,    
                         help='Path to previous saved model to restart from')
@@ -224,4 +216,4 @@ if __name__ == '__main__':
     train(args)
 
 
-# CUDA_VISIBLE_DEVICES=1 python trainwc.py --arch unetnc --data_path ./data/DewarpNet/doc3d/ --batch_size 50 --tboard
+# CUDA_VISIBLE_DEVICES=1 python trainwc.py --arch unetnc --data_path ./data/DewarpNet/doc3d/ --batch_size 40 --tboard

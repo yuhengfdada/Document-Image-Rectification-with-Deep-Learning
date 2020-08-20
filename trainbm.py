@@ -1,29 +1,23 @@
 # code to train backward mapping regression from GT world coordinates
 # models are saved in checkpoints-bm/ 
 
-import sys, os
+import os
 import torch
 import argparse
-import numpy as np
 import torch.nn as nn
-import torch.nn.functional as F
-import torchvision.models as models
 from torch.utils.tensorboard import SummaryWriter
 
 import matplotlib
 matplotlib.use('Agg')
-import matplotlib.pyplot as plt
 
 from torch.autograd import Variable
 from torch.utils import data
-from torchvision import utils
 from tqdm import tqdm
 
 from models import get_model
 from loaders import get_loader
 from utils import show_unwarp_tnsboard,  get_lr
 import recon_lossc
-import pytorch_ssim
 
 
 
@@ -111,7 +105,6 @@ def train(args):
             l1loss = loss_fn(target_nhwc, labels)
             rloss,ssim,uworg,uwpred = reconst_loss(images[:,:-1,:,:],target_nhwc,labels)
             loss=(10.0*l1loss) +(0.5*rloss) #+ (0.3*ssim)
-            # loss=l1loss  
             avgl1loss+=float(l1loss)        
             avg_loss+=float(loss)
             avgrloss+=float(rloss)
@@ -146,7 +139,6 @@ def train(args):
         write_log_file(log_file_name, train_losses,epoch+1, lrate,'Train')
         
         model.eval()
-        val_loss=0.0
         val_l1loss=0.0
         val_mse=0.0
         val_rloss=0.0
@@ -214,7 +206,7 @@ if __name__ == '__main__':
                         help='# of the epochs')
     parser.add_argument('--batch_size', nargs='?', type=int, default=1, 
                         help='Batch Size')
-    parser.add_argument('--l_rate', nargs='?', type=float, default=1e-5, 
+    parser.add_argument('--l_rate', nargs='?', type=float, default=1e-4, 
                         help='Learning Rate')
     parser.add_argument('--resume', nargs='?', type=str, default=None,    
                         help='Path to previous saved model to restart from')
@@ -229,4 +221,4 @@ if __name__ == '__main__':
 
 
 
-#CUDA_VISIBLE_DEVICES=1 python trainbm.py --arch dnetccnl --img_rows 128 --img_cols 128 --n_epoch 250 --batch_size 2 --l_rate 0.0001 --tboard --data_path ./data/DewarpNet/doc3d
+#CUDA_VISIBLE_DEVICES=1 python trainbm.py --n_epoch 250 --batch_size 2 --l_rate 0.0001 --tboard --data_path ./data/DewarpNet/doc3d

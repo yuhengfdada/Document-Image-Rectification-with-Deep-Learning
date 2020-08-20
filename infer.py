@@ -36,7 +36,7 @@ def unwarp(img, bm):
     img = np.expand_dims(img, 0)
     img = torch.from_numpy(img).double()
 
-    res = F.grid_sample(input=img, grid=bm)
+    res = F.grid_sample(input=img, grid=bm, align_corners=True)
     res = res[0].numpy().transpose((1, 2, 0))
 
     return res
