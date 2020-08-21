@@ -360,7 +360,7 @@ if __name__ == '__main__':
                         help='Path to previous saved shape network model to restart from')
     parser.add_argument('--texture_mapping_net_loc', nargs='?', type=str, default=None,
                         help='Path to previous saved texture mapping network model to restart from')
-    parser.add_argument('--logdir', nargs='?', type=str, default='./logdir',
+    parser.add_argument('--logdir', nargs='?', type=str, default='./logdir/',
                         help='Path to store the loss logs')
     parser.add_argument('--tboard', dest='tboard', action='store_true',
                         help='Enable visualization(s) on tensorboard | False by default')
@@ -371,4 +371,4 @@ if __name__ == '__main__':
     args = parser.parse_args()
     train(args)
 
-# CUDA_VISIBLE_DEVICES=1 python jointTrain.py --data_path ./data/DewarpNet/doc3d/ --batch_size 40 --tboard --shape_net_loc ./eval/models/unetnc_doc3d.pkl --texture_mapping_net_loc dnetccnl_doc3d.pkl
+# CUDA_VISIBLE_DEVICES=1 python jointTrain.py --data_path ./data/DewarpNet/doc3d/ --batch_size 40 --tboard --shape_net_loc ./eval/models/unetnc_doc3d.pkl --texture_mapping_net_loc ./eval/models/dnetccnl_doc3d.pkl
