@@ -18,13 +18,13 @@ def unwarp(img, bm):
     # resize bm to img size
     # print bm.shape
     bm = bm.transpose(3, 2).transpose(2, 1)
-    bm = F.upsample(bm, size=(h, w), mode='bilinear')
+    bm = F.interpolate(bm, size=(h, w), mode='bilinear', align_corners=False)
     bm = bm.transpose(1, 2).transpose(2, 3)
     # print bm.shape
 
     img=img.double()
     # print(img.type)
-    res = F.grid_sample(input=img, grid=bm)
+    res = F.grid_sample(input=img, grid=bm, align_corners = True)
     # print(res.shape)
     return res
 

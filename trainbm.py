@@ -185,7 +185,7 @@ def train(args):
                      'optimizer_state' : optimizer.state_dict(),}
             torch.save(state, args.logdir+"{}_{}_{}_{}_{}_best_model.pkl".format(args.arch, epoch+1,val_mse,train_mse,experiment_name))
 
-        if (epoch+1) % 10 == 0:
+        if (epoch+1) % 10 == 0 and epoch > 80:
             state = {'epoch': epoch+1,
                      'model_state': model.state_dict(),
                      'optimizer_state' : optimizer.state_dict(),}
