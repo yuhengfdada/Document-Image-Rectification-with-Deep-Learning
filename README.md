@@ -1,3 +1,7 @@
+Final report is available here: [**report**](https://github.com/yuhengfdada/Document-Image-Rectification-with-Deep-Learning/blob/master/UROP2100%20Summer%20Report.docx)
+
+
+
 ### Mini Dataset
 Put it in DewarpNet/ and unzip. [**MiniDataset**](https://hkustconnect-my.sharepoint.com/:u:/g/personal/xluap_connect_ust_hk/ET7BUpyfSRdGvQ2k8BZmS9ABLRPNZz9ByLHFLoxREXI2Wg?e=d2xXyw)
 
