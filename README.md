@@ -1,4 +1,4 @@
-Final report is available here: [**report**](https://github.com/yuhengfdada/Document-Image-Rectification-with-Deep-Learning/blob/master/UROP2100%20Summer%20Report.docx)
+Final report is available here: [**report**](https://github.com/yuhengfdada/Document-Image-Rectification-with-Deep-Learning/blob/master/UROP2100%20Summer%20Report.pdf)
 
 
 
